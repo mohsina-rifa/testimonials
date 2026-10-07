@@ -1,10 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
-import {
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar';
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import { useAppearance } from '@/hooks/use-appearance';
 
 export function ThemeToggle() {
@@ -15,19 +11,18 @@ export function ThemeToggle() {
 
     // Match the server render until mounted to avoid a hydration mismatch.
     const isDark = mounted && resolvedAppearance === 'dark';
+    const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 
     return (
-        <SidebarMenu>
-            <SidebarMenuItem>
-                <SidebarMenuButton
-                    tooltip={{ children: isDark ? 'Light mode' : 'Dark mode' }}
-                    onClick={() => updateAppearance(isDark ? 'light' : 'dark')}
-                    data-test="theme-toggle"
-                >
-                    {isDark ? <Sun /> : <Moon />}
-                    <span>{isDark ? 'Light mode' : 'Dark mode'}</span>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-        </SidebarMenu>
+        <Button
+            variant="ghost"
+            size="icon"
+            aria-label={label}
+            title={label}
+            onClick={() => updateAppearance(isDark ? 'light' : 'dark')}
+            data-test="theme-toggle"
+        >
+            {isDark ? <Sun /> : <Moon />}
+        </Button>
     );
 }

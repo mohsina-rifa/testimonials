@@ -12,7 +12,6 @@ import AppLogo from '@/components/app-logo';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { SpaceSwitcher } from '@/components/space-switcher';
-import { ThemeToggle } from '@/components/theme-toggle';
 import {
     Sidebar,
     SidebarContent,
@@ -84,7 +83,6 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <ThemeToggle />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

@@ -7,6 +7,7 @@ import {
     MessageSquareHeart,
     ShieldCheck,
 } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme-toggle';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Button } from '@/components/ui/button';
 import { login, register } from '@/routes';
@@ -84,6 +85,7 @@ export default function Welcome({
                                     </Button>
                                 </>
                             )}
+                            <ThemeToggle />
                         </nav>
                     </div>
                 </header>
