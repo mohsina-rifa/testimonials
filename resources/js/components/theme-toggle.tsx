@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import {
     SidebarMenu,
@@ -8,7 +9,12 @@ import { useAppearance } from '@/hooks/use-appearance';
 
 export function ThemeToggle() {
     const { resolvedAppearance, updateAppearance } = useAppearance();
-    const isDark = resolvedAppearance === 'dark';
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+
+    // Match the server render until mounted to avoid a hydration mismatch.
+    const isDark = mounted && resolvedAppearance === 'dark';
 
     return (
         <SidebarMenu>
