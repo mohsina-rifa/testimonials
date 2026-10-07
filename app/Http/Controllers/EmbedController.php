@@ -36,7 +36,7 @@ class EmbedController extends Controller
      */
     public static function publicTestimonials(Space $space): array
     {
-        return $space->testimonials()->publiclyVisible()->latest()->get()
+        return array_values($space->testimonials()->publiclyVisible()->latest()->get()
             ->map(fn (Testimonial $testimonial): array => [
                 'id' => $testimonial->id,
                 'name' => $testimonial->submitter_name,
@@ -45,6 +45,6 @@ class EmbedController extends Controller
                 'rating' => $testimonial->rating,
                 'photo_url' => $testimonial->profile_photo_url,
             ])
-            ->all();
+            ->all());
     }
 }

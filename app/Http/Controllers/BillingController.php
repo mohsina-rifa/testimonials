@@ -33,7 +33,7 @@ class BillingController extends Controller
             'cancel_url' => route('billing.index'),
         ]);
 
-        return Inertia::location($checkout->url);
+        return Inertia::location($checkout->asStripeCheckoutSession()->url);
     }
 
     public function portal(Request $request, BuildPlanSummary $planSummary): SymfonyResponse|RedirectResponse
