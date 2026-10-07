@@ -55,8 +55,8 @@ export default function Dashboard({
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
                         <h1 className="text-2xl font-semibold">Dashboard</h1>
-                        <p className="text-sm text-muted-foreground capitalize">
-                            {plan.plan} plan · {plan.spaces_used} of {plan.max_spaces} spaces used
+                        <p className="text-sm text-muted-foreground">
+                            <span className="capitalize">{plan.plan}</span> plan · {plan.spaces_used} of {plan.max_spaces} spaces used
                         </p>
                     </div>
                     <Button asChild variant="outline" size="sm">
