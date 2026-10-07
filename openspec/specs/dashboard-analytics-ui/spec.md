@@ -8,16 +8,16 @@ Shows an owner their testimonial analytics and plan usage on the dashboard, usin
 
 ### Requirement: Totals display
 
-The dashboard SHALL show total spaces, total testimonials, Wall of Love count and unique submitters for the signed-in owner only.
+A space's dashboard SHALL show that space's total testimonials, Wall of Love count and unique submitters, for its owner only.
 
 #### Scenario: Owner with data
 
-- **WHEN** an owner with two spaces and three testimonials opens the dashboard
-- **THEN** the totals reflect only that owner's data
+- **WHEN** an owner opens the dashboard of a space with three testimonials while owning another space with more
+- **THEN** the totals reflect only the opened space
 
 ### Requirement: Period filter and chart
 
-The dashboard SHALL let the owner choose 7, 30, 90 days or all time, and SHALL render the zero-filled daily series for the chosen period.
+The space dashboard SHALL let the owner choose 7, 30, 90 days or all time, and SHALL render the zero-filled daily series of that space for the chosen period.
 
 #### Scenario: Change period
 
@@ -26,18 +26,27 @@ The dashboard SHALL let the owner choose 7, 30, 90 days or all time, and SHALL r
 
 ### Requirement: Empty state
 
-When an owner has no spaces, the dashboard SHALL show an empty state with a prompt to create a first space.
+When a space has no testimonials, its dashboard SHALL show an empty state with a prompt to share the collection page. When an owner has no spaces, the spaces page SHALL show a create-first-space call to action.
 
 #### Scenario: New owner
 
-- **WHEN** a user with no spaces opens the dashboard
-- **THEN** a create-space call to action is shown
+- **WHEN** an owner opens the dashboard of a space with no testimonials
+- **THEN** a prompt to share the collection link is shown
 
 ### Requirement: Plan usage summary
 
-The dashboard SHALL show the owner's plan and space usage against the plan limit.
+The spaces page SHALL show the owner's plan and space usage against the plan limit.
 
 #### Scenario: Free owner with two spaces
 
-- **WHEN** a Free owner with two spaces opens the dashboard
+- **WHEN** a Free owner with two spaces opens the spaces page
 - **THEN** it shows "2 of 3 spaces used" on the Free plan
+
+### Requirement: Space dashboard access
+
+A space's dashboard SHALL be available only to the space's owner.
+
+#### Scenario: Other owner
+
+- **WHEN** a user requests the dashboard of a space they do not own
+- **THEN** access is refused
