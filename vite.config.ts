@@ -29,6 +29,12 @@ export default defineConfig({
         }),
     ]),
     server: {
+        cors: {
+            origin: [
+                /^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/,
+                /^https?:\/\/anish0m\.testimonials(?::\d+)?$/,
+            ],
+        },
         watch: {
             ignored: [
                 '**/.agents/**',
