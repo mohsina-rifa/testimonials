@@ -61,7 +61,7 @@ export default function Welcome({
                 <header className="border-b">
                     <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
-                            <AppLogoIcon className="size-7 fill-current text-primary" />
+                            <AppLogoIcon className="size-7" />
                             {name}
                         </Link>
                         <nav className="flex items-center gap-2">
