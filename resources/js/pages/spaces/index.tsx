@@ -5,7 +5,7 @@ import UpgradePrompt from '@/components/upgrade-prompt';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { create, index } from '@/routes/spaces';
-import { edit } from '@/routes/spaces';
+import { dashboard, edit } from '@/routes/spaces';
 import { index as testimonials } from '@/routes/spaces/testimonials';
 
 type SpaceSummary = {
@@ -61,7 +61,11 @@ export default function SpacesIndex({
                         {spaces.map((space) => (
                             <Card key={space.id}>
                                 <CardHeader>
-                                    <CardTitle>{space.title}</CardTitle>
+                                    <CardTitle>
+                                        <Link href={dashboard(space.id)} className="hover:underline">
+                                            {space.title}
+                                        </Link>
+                                    </CardTitle>
                                     <CardDescription>{space.subtitle}</CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-3">
@@ -70,10 +74,13 @@ export default function SpacesIndex({
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         <Button asChild size="sm">
-                                            <Link href={testimonials(space.id)}>Testimonials</Link>
+                                            <Link href={dashboard(space.id)}>Dashboard</Link>
                                         </Button>
                                         <Button asChild size="sm" variant="outline">
-                                            <Link href={edit(space.id)}>Settings</Link>
+                                            <Link href={testimonials(space.id)}>Inbox</Link>
+                                        </Button>
+                                        <Button asChild size="sm" variant="outline">
+                                            <Link href={edit(space.id)}>Space</Link>
                                         </Button>
                                         <Button asChild size="sm" variant="ghost">
                                             <a href={space.collection_url} target="_blank" rel="noreferrer">
