@@ -1,28 +1,19 @@
-import { Head, Link, router } from '@inertiajs/react';
-import { BarChart3, FolderKanban } from 'lucide-react';
+import { Head, router } from '@inertiajs/react';
+import { BarChart3, MessageSquareHeart } from 'lucide-react';
 import DailyChart from '@/components/daily-chart';
 import type { DailyPoint } from '@/components/daily-chart';
 import EmptyState from '@/components/empty-state';
-import UpgradePrompt from '@/components/upgrade-prompt';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { dashboard } from '@/routes';
-import { create } from '@/routes/spaces';
+import { dashboard } from '@/routes/spaces';
 
 type Analytics = {
-    total_spaces: number;
     total_testimonials: number;
     unique_submitters: number;
     wall_of_love_count: number;
     collected_in_period: number;
     daily: DailyPoint[];
-};
-
-type Plan = {
-    plan: string;
-    max_spaces: number;
-    spaces_used: number;
 };
 
 const periods = [
@@ -33,16 +24,15 @@ const periods = [
 ];
 
 export default function Dashboard({
+    space,
     period,
     analytics,
-    plan,
 }: {
+    space: { id: number; title: string; collection_url: string };
     period: string;
     analytics: Analytics;
-    plan: Plan;
 }) {
     const stats = [
-        { label: 'Spaces', value: analytics.total_spaces },
         { label: 'Testimonials', value: analytics.total_testimonials },
         { label: 'On Wall of Love', value: analytics.wall_of_love_count },
         { label: 'Unique submitters', value: analytics.unique_submitters },
@@ -52,30 +42,21 @@ export default function Dashboard({
         <>
             <Head title="Dashboard" />
             <div className="flex flex-1 flex-col gap-6 p-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                        <h1 className="text-2xl font-semibold">Dashboard</h1>
-                        <p className="text-sm text-muted-foreground">
-                            <span className="capitalize">{plan.plan}</span> plan · {plan.spaces_used} of {plan.max_spaces} spaces used
-                        </p>
-                    </div>
-                    <Button asChild variant="outline" size="sm">
-                        <Link href={create()}>New space</Link>
-                    </Button>
+                <div>
+                    <h1 className="text-2xl font-semibold">{space.title}</h1>
+                    <p className="text-sm text-muted-foreground">Dashboard</p>
                 </div>
 
-                {plan.spaces_used >= plan.max_spaces && plan.plan === 'free' && (
-                    <UpgradePrompt message="You are using all of your Free spaces. Upgrade to create more." />
-                )}
-
-                {analytics.total_spaces === 0 ? (
+                {analytics.total_testimonials === 0 ? (
                     <EmptyState
-                        icon={FolderKanban}
-                        title="Create your first space"
-                        description="A space is a shareable page where people submit testimonials."
+                        icon={MessageSquareHeart}
+                        title="No testimonials yet"
+                        description="Share your collection page to start receiving testimonials."
                     >
                         <Button asChild>
-                            <Link href={create()}>Create a space</Link>
+                            <a href={space.collection_url} target="_blank" rel="noreferrer">
+                                Open collection page
+                            </a>
                         </Button>
                     </EmptyState>
                 ) : (
@@ -109,7 +90,7 @@ export default function Dashboard({
                                     onValueChange={(value) =>
                                         value &&
                                         router.get(
-                                            dashboard(),
+                                            dashboard(space.id),
                                             { period: value },
                                             { preserveScroll: true, preserveState: true },
                                         )
@@ -140,5 +121,5 @@ export default function Dashboard({
 }
 
 Dashboard.layout = {
-    breadcrumbs: [{ title: 'Dashboard', href: dashboard() }],
+    breadcrumbs: [{ title: 'Spaces', href: '/spaces' }],
 };

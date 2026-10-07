@@ -2,6 +2,7 @@
 
 namespace App\Actions\Analytics;
 
+use App\Models\Space;
 use App\Models\Testimonial;
 use App\Models\User;
 use Carbon\CarbonInterface;
@@ -14,6 +15,7 @@ class ComputeOwnerAnalytics
      * Compute an owner's analytics live from stored testimonials.
      *
      * @param  int|null  $days  Number of days ending today, or null for all time.
+     * @param  Space|null  $space  Restrict testimonial figures to one of the owner's spaces.
      * @return array{
      *     total_spaces: int,
      *     total_testimonials: int,
@@ -23,9 +25,11 @@ class ComputeOwnerAnalytics
      *     daily: array<string, int>
      * }
      */
-    public function handle(User $owner, ?int $days = null): array
+    public function handle(User $owner, ?int $days = null, ?Space $space = null): array
     {
-        $testimonials = fn (): Builder => Testimonial::query()->whereIn('space_id', $owner->spaces()->select('id'));
+        $testimonials = fn (): Builder => Testimonial::query()
+            ->whereIn('space_id', $owner->spaces()->select('id'))
+            ->when($space, fn (Builder $query): Builder => $query->where('space_id', $space->id));
 
         $periodStart = $days === null ? null : Date::today(config('app.timezone'))->subDays($days - 1);
 

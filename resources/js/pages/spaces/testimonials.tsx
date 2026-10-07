@@ -2,7 +2,6 @@ import { Head, Link, router } from '@inertiajs/react';
 import { Heart, MessageSquare, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import EmptyState from '@/components/empty-state';
-import SpaceTabs from '@/components/space-tabs';
 import StarRating from '@/components/star-rating';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -67,7 +66,7 @@ export default function SpaceTestimonials({
         <>
             <Head title={`${space.title} testimonials`} />
             <div className="flex flex-1 flex-col gap-6 p-4">
-                <SpaceTabs space={space} active="testimonials" />
+                <h1 className="text-2xl font-semibold">{space.title}</h1>
 
                 <div className="flex flex-wrap gap-2">
                     {filters.map((item) => (

@@ -2,7 +2,6 @@ import { Head, useForm } from '@inertiajs/react';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 import InputError from '@/components/input-error';
-import SpaceTabs from '@/components/space-tabs';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -45,7 +44,7 @@ export default function SpaceEmbed({
         <>
             <Head title={`${space.title} embed`} />
             <div className="flex flex-1 flex-col gap-6 p-4">
-                <SpaceTabs space={space} active="embed" />
+                <h1 className="text-2xl font-semibold">{space.title}</h1>
 
                 <div className="grid gap-6 lg:grid-cols-[20rem_1fr]">
                     <form

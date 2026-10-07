@@ -9,7 +9,8 @@ import {
 } from 'lucide-react';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Button } from '@/components/ui/button';
-import { dashboard, login, register } from '@/routes';
+import { login, register } from '@/routes';
+import { index as spaces } from '@/routes/spaces';
 
 type PlanLimits = { max_spaces: number; max_testimonials_per_space: number };
 
@@ -66,7 +67,7 @@ export default function Welcome({
                         <nav className="flex items-center gap-2">
                             {auth.user ? (
                                 <Button asChild>
-                                    <Link href={dashboard()}>Dashboard</Link>
+                                    <Link href={spaces()}>My spaces</Link>
                                 </Button>
                             ) : (
                                 <>
@@ -93,8 +94,8 @@ export default function Welcome({
                     </p>
                     <div className="mt-8 flex justify-center gap-3">
                         <Button asChild size="lg">
-                            <Link href={auth.user ? dashboard() : register()}>
-                                {auth.user ? 'Go to dashboard' : 'Start for free'}
+                            <Link href={auth.user ? spaces() : register()}>
+                                {auth.user ? 'Go to your spaces' : 'Start for free'}
                             </Link>
                         </Button>
                     </div>
@@ -147,7 +148,7 @@ export default function Welcome({
                                     className="mt-6 w-full"
                                     variant={tier.highlighted ? 'default' : 'outline'}
                                 >
-                                    <Link href={auth.user ? dashboard() : register()}>
+                                    <Link href={auth.user ? spaces() : register()}>
                                         {tier.highlighted ? 'Choose Pro' : 'Start free'}
                                     </Link>
                                 </Button>

@@ -22,9 +22,8 @@ Route::post('s/{space:slug}', [CollectionController::class, 'store'])->middlewar
 Route::get('embed/{publicId}', [EmbedController::class, 'show'])->name('embed.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', DashboardController::class)->name('dashboard');
-
     Route::resource('spaces', SpaceController::class)->except('show');
+    Route::get('spaces/{space}/dashboard', DashboardController::class)->name('spaces.dashboard');
 
     Route::scopeBindings()->group(function () {
         Route::get('spaces/{space}/testimonials', [SpaceTestimonialController::class, 'index'])->name('spaces.testimonials.index');

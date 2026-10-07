@@ -2,7 +2,6 @@ import { Head, router } from '@inertiajs/react';
 import { useState } from 'react';
 import SpaceForm from '@/components/space-form';
 import type { SpaceFormData } from '@/components/space-form';
-import SpaceTabs from '@/components/space-tabs';
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
@@ -23,7 +22,7 @@ export default function SpacesEdit({ space }: { space: Space }) {
         <>
             <Head title={`${space.title} settings`} />
             <div className="flex flex-1 flex-col gap-6 p-4">
-                <SpaceTabs space={space} active="settings" />
+                <h1 className="text-2xl font-semibold">{space.title}</h1>
                 <p className="text-sm text-muted-foreground">
                     Public page:{' '}
                     <a className="text-primary underline" href={space.collection_url} target="_blank" rel="noreferrer">
