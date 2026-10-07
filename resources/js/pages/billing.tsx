@@ -131,6 +131,7 @@ export default function Billing({ plan }: { plan: Plan }) {
                         <div className="flex gap-2">
                             {!isPro && (
                                 <Button
+                                    variant="warning"
                                     disabled={!plan.billing_configured}
                                     onClick={() => router.post(checkout.url())}
                                 >
