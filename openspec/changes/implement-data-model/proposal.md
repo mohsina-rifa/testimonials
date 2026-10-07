@@ -9,7 +9,7 @@ The app has authentication but no domain data: nothing stores spaces, testimonia
 - Add `spaces` table and `Space` model: ULID `public_id`, editable unique `slug`, `Theme` enum, JSON `field_configuration` keyed by a backed enum, ratings toggle.
 - Add `testimonials` table and `Testimonial` model with denormalized submitter fields (lowercased, trimmed email), flag booleans, optional rating and profile photo path, plus the three planned indexes.
 - Add `embed_configurations` table and model, one row per space, created with defaults when the space is created.
-- Add Cashier tables and columns (`subscriptions`, `subscription_items`, user billing columns) and a `stripe_webhook_events` table for idempotency.
+- Verify the already-published Cashier tables and `Billable` setup, and add a `stripe_webhook_events` table for idempotency.
 - Add `config/plans.php` with Free and Pro limits, `User::currentPlan()` derived from subscription state, and transactional, row-locked limit checks for space creation and testimonial submission.
 - Add a `publiclyVisible` scope (`is_wall_of_love AND NOT is_hidden AND consent_given`) and reject Wall of Love toggles on non-consented testimonials.
 - Hard delete with cascading foreign keys; a deletion hook removes profile photo files.
@@ -33,7 +33,7 @@ None. There are no existing specs.
 
 ## Impact
 
-- **Database:** new migrations for spaces, testimonials, embed_configurations, stripe_webhook_events, and Cashier's published migrations.
-- **Code:** new models, enums (`Theme`, field-configuration keys, embed layout), factories and seeders under `app/` and `database/`; `User` gains the `Billable` trait, `spaces()` and `currentPlan()`; new `config/plans.php`.
+- **Database:** new migrations for spaces, testimonials, embed_configurations and stripe_webhook_events (Cashier's migrations already exist).
+- **Code:** new models, enums (`Theme`, field-configuration keys, embed layout), factories and seeders under `app/` and `database/`; `User` (already `Billable`) gains `spaces()` and `currentPlan()`; new `config/plans.php`.
 - **Dependencies:** `laravel/cashier` is already in `composer.json`; no new packages.
 - **Out of scope:** controllers, routes, UI, Stripe checkout and webhook handlers, rate limiting and honeypot. This change covers the data layer and its rules only.
