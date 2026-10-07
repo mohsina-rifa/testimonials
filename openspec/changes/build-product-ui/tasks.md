@@ -44,4 +44,4 @@
 ## 9. Integration checks
 
 - [x] 9.1 Regenerate Wayfinder routes, run `npm run build`, `vendor/bin/pint --dirty --format agent`, and the new feature tests; verify all pass
-- [ ] 9.2 Walk through register → create space → submit testimonial → moderate → embed → dashboard → billing locally and confirm every screen is reachable from navigation
+- [x] 9.2 Walk through register → create space → submit testimonial → moderate → embed → dashboard → billing locally and confirm every screen is reachable from navigation
