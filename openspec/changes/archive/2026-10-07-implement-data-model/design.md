@@ -11,10 +11,12 @@ See proposal.md for motivation and `docs/data-model.md` for the full planned mod
 ## Goals / Non-Goals
 
 **Goals:**
+
 - A schema, models, enums, config, factories and seeders that satisfy every spec in this change.
 - Business rules that live in the model layer (visibility scope, consent guard, limit checks), so later controllers cannot bypass them.
 
 **Non-Goals:**
+
 - Controllers, routes, UI, Stripe checkout or webhook handling, rate limiting and honeypot.
 - Policies and authorization of who may edit a space; they arrive with the features that expose it.
 

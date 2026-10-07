@@ -20,7 +20,7 @@ class SpaceFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->unique()->words(3, true);
+        $title = fake()->unique()->company();
 
         return [
             'user_id' => User::factory(),

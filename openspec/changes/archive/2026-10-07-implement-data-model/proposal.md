@@ -19,6 +19,7 @@ The app has authentication but no domain data: nothing stores spaces, testimonia
 ## Capabilities
 
 ### New Capabilities
+
 - `space-management`: spaces, slugs, public IDs, themes, field configuration, ownership and cascading deletion.
 - `testimonial-storage`: testimonial records, submitter data normalization, flags, ratings, profile photo paths and file cleanup.
 - `testimonial-visibility`: derived public visibility and the consent rule for Wall of Love.
