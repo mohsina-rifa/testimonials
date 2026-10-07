@@ -55,7 +55,10 @@ export default function SpaceTestimonials({
 }) {
     const [deleting, setDeleting] = useState<Testimonial | null>(null);
 
-    const toggle = (testimonial: Testimonial, field: 'is_favorite' | 'is_hidden' | 'is_wall_of_love') =>
+    const toggle = (
+        testimonial: Testimonial,
+        field: 'is_favorite' | 'is_hidden' | 'is_wall_of_love',
+    ) =>
         router.patch(
             update.url({ space: space.id, testimonial: testimonial.id }),
             { [field]: !testimonial[field] },
@@ -74,11 +77,16 @@ export default function SpaceTestimonials({
                             key={item.value}
                             asChild
                             size="sm"
-                            variant={filter === item.value ? 'default' : 'outline'}
+                            variant={
+                                filter === item.value ? 'default' : 'outline'
+                            }
                         >
                             <Link
                                 href={index.url(space.id, {
-                                    query: item.value === 'all' ? {} : { filter: item.value },
+                                    query:
+                                        item.value === 'all'
+                                            ? {}
+                                            : { filter: item.value },
                                 })}
                             >
                                 {item.label}
@@ -96,55 +104,120 @@ export default function SpaceTestimonials({
                 ) : (
                     <div className="grid gap-4">
                         {testimonials.data.map((testimonial) => (
-                            <article key={testimonial.id} className="rounded-xl border p-4">
+                            <article
+                                key={testimonial.id}
+                                className="rounded-xl border p-4"
+                            >
                                 <div className="flex flex-wrap items-start justify-between gap-2">
                                     <div className="flex items-center gap-3">
                                         {testimonial.profile_photo_url && (
-                                            <img src={testimonial.profile_photo_url} alt="" className="size-10 rounded-full object-cover" />
+                                            <img
+                                                src={
+                                                    testimonial.profile_photo_url
+                                                }
+                                                alt=""
+                                                className="size-10 rounded-full object-cover"
+                                            />
                                         )}
                                         <div>
-                                            <div className="font-medium">{testimonial.submitter_name}</div>
+                                            <div className="font-medium">
+                                                {testimonial.submitter_name}
+                                            </div>
                                             <div className="text-xs text-muted-foreground">
                                                 {testimonial.submitter_email}
-                                                {testimonial.company_name && ` · ${testimonial.company_name}`}
+                                                {testimonial.company_name &&
+                                                    ` · ${testimonial.company_name}`}
                                                 {` · ${testimonial.created_at}`}
                                             </div>
                                         </div>
                                     </div>
-                                    {testimonial.rating !== null && <StarRating value={testimonial.rating} />}
+                                    {testimonial.rating !== null && (
+                                        <StarRating
+                                            value={testimonial.rating}
+                                        />
+                                    )}
                                 </div>
-                                <p className="mt-3 text-sm">{testimonial.testimonial_text}</p>
+                                <p className="mt-3 text-sm">
+                                    {testimonial.testimonial_text}
+                                </p>
                                 <div className="mt-3 flex flex-wrap items-center gap-2">
                                     {testimonial.consent_given ? (
-                                        <Badge className="bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200">Consent given</Badge>
+                                        <Badge className="bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200">
+                                            Consent given
+                                        </Badge>
                                     ) : (
-                                        <Badge className="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200">No consent</Badge>
+                                        <Badge className="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200">
+                                            No consent
+                                        </Badge>
                                     )}
-                                    {testimonial.is_wall_of_love && <Badge>Wall of Love</Badge>}
-                                    {testimonial.is_hidden && <Badge variant="secondary">Hidden</Badge>}
+                                    {testimonial.is_wall_of_love && (
+                                        <Badge>Wall of Love</Badge>
+                                    )}
+                                    {testimonial.is_hidden && (
+                                        <Badge variant="secondary">
+                                            Hidden
+                                        </Badge>
+                                    )}
                                 </div>
                                 <div className="mt-3 flex flex-wrap gap-2">
-                                    <Button size="sm" variant="outline" onClick={() => toggle(testimonial, 'is_favorite')}>
-                                        <Heart className={testimonial.is_favorite ? 'fill-red-500 text-red-500' : ''} />
-                                        {testimonial.is_favorite ? 'Unfavorite' : 'Favorite'}
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() =>
+                                            toggle(testimonial, 'is_favorite')
+                                        }
+                                    >
+                                        <Heart
+                                            className={
+                                                testimonial.is_favorite
+                                                    ? 'fill-red-500 text-red-500'
+                                                    : ''
+                                            }
+                                        />
+                                        {testimonial.is_favorite
+                                            ? 'Unfavorite'
+                                            : 'Favorite'}
                                     </Button>
                                     <Button
                                         size="sm"
                                         variant="outline"
-                                        disabled={!testimonial.consent_given && !testimonial.is_wall_of_love}
+                                        disabled={
+                                            !testimonial.consent_given &&
+                                            !testimonial.is_wall_of_love
+                                        }
                                         title={
                                             testimonial.consent_given
                                                 ? undefined
                                                 : 'Consent is required to add to the Wall of Love'
                                         }
-                                        onClick={() => toggle(testimonial, 'is_wall_of_love')}
+                                        onClick={() =>
+                                            toggle(
+                                                testimonial,
+                                                'is_wall_of_love',
+                                            )
+                                        }
                                     >
-                                        {testimonial.is_wall_of_love ? 'Remove from Wall' : 'Add to Wall of Love'}
+                                        {testimonial.is_wall_of_love
+                                            ? 'Remove from Wall'
+                                            : 'Add to Wall of Love'}
                                     </Button>
-                                    <Button size="sm" variant="outline" onClick={() => toggle(testimonial, 'is_hidden')}>
-                                        {testimonial.is_hidden ? 'Unhide' : 'Hide'}
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() =>
+                                            toggle(testimonial, 'is_hidden')
+                                        }
+                                    >
+                                        {testimonial.is_hidden
+                                            ? 'Unhide'
+                                            : 'Hide'}
                                     </Button>
-                                    <Button size="sm" variant="ghost" className="text-destructive" onClick={() => setDeleting(testimonial)}>
+                                    <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        className="text-destructive"
+                                        onClick={() => setDeleting(testimonial)}
+                                    >
                                         <Trash2 /> Delete
                                     </Button>
                                 </div>
@@ -157,8 +230,20 @@ export default function SpaceTestimonials({
                     <nav className="flex flex-wrap gap-1">
                         {testimonials.links.map((link, position) =>
                             link.url ? (
-                                <Button key={position} asChild size="sm" variant={link.active ? 'default' : 'outline'}>
-                                    <Link href={link.url} dangerouslySetInnerHTML={{ __html: link.label }} />
+                                <Button
+                                    key={position}
+                                    asChild
+                                    size="sm"
+                                    variant={
+                                        link.active ? 'default' : 'outline'
+                                    }
+                                >
+                                    <Link
+                                        href={link.url}
+                                        dangerouslySetInnerHTML={{
+                                            __html: link.label,
+                                        }}
+                                    />
                                 </Button>
                             ) : null,
                         )}
@@ -166,26 +251,39 @@ export default function SpaceTestimonials({
                 )}
             </div>
 
-            <Dialog open={deleting !== null} onOpenChange={(open) => !open && setDeleting(null)}>
+            <Dialog
+                open={deleting !== null}
+                onOpenChange={(open) => !open && setDeleting(null)}
+            >
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Delete testimonial?</DialogTitle>
                         <DialogDescription>
-                            The testimonial from {deleting?.submitter_name} will be permanently removed.
+                            The testimonial from {deleting?.submitter_name} will
+                            be permanently removed.
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
-                        <Button variant="outline" onClick={() => setDeleting(null)}>
+                        <Button
+                            variant="outline"
+                            onClick={() => setDeleting(null)}
+                        >
                             Cancel
                         </Button>
                         <Button
                             variant="destructive"
                             onClick={() => {
                                 if (deleting) {
-                                    router.delete(destroy.url({ space: space.id, testimonial: deleting.id }), {
-                                        preserveScroll: true,
-                                        onSuccess: () => setDeleting(null),
-                                    });
+                                    router.delete(
+                                        destroy.url({
+                                            space: space.id,
+                                            testimonial: deleting.id,
+                                        }),
+                                        {
+                                            preserveScroll: true,
+                                            onSuccess: () => setDeleting(null),
+                                        },
+                                    );
                                 }
                             }}
                         >

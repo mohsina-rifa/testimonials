@@ -22,7 +22,9 @@ export default function AuthSimpleLayout({
                             <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-md">
                                 <AppLogoIcon className="size-9" />
                             </div>
-                            <span className="text-lg font-semibold">{name}</span>
+                            <span className="text-lg font-semibold">
+                                {name}
+                            </span>
                         </Link>
 
                         <div className="space-y-2 text-center">

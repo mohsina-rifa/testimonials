@@ -3,7 +3,13 @@ import { Check, CircleAlert } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { checkout, index, portal } from '@/routes/billing';
 
 type Plan = {
@@ -18,7 +24,15 @@ type Plan = {
     ends_at: string | null;
 };
 
-function Usage({ label, used, max }: { label: string; used: number; max: number }) {
+function Usage({
+    label,
+    used,
+    max,
+}: {
+    label: string;
+    used: number;
+    max: number;
+}) {
     const percent = Math.min(100, (used / max) * 100);
 
     return (
@@ -31,7 +45,11 @@ function Usage({ label, used, max }: { label: string; used: number; max: number 
             </div>
             <div className="h-2 rounded-full bg-muted">
                 <div
-                    className={percent >= 100 ? 'h-2 rounded-full bg-amber-500' : 'h-2 rounded-full bg-primary'}
+                    className={
+                        percent >= 100
+                            ? 'h-2 rounded-full bg-amber-500'
+                            : 'h-2 rounded-full bg-primary'
+                    }
                     style={{ width: `${percent}%` }}
                 />
             </div>
@@ -53,7 +71,8 @@ export default function Billing({ plan }: { plan: Plan }) {
                         <CircleAlert />
                         <AlertTitle>Billing unavailable</AlertTitle>
                         <AlertDescription>
-                            Payments are not configured for this environment, so plan changes are disabled.
+                            Payments are not configured for this environment, so
+                            plan changes are disabled.
                         </AlertDescription>
                     </Alert>
                 )}
@@ -63,7 +82,9 @@ export default function Billing({ plan }: { plan: Plan }) {
                         <CircleAlert className="text-amber-600" />
                         <AlertTitle>You are over your plan limits</AlertTitle>
                         <AlertDescription className="text-inherit">
-                            Your existing data is kept, but new spaces or testimonials are blocked until you are under the limit or upgrade.
+                            Your existing data is kept, but new spaces or
+                            testimonials are blocked until you are under the
+                            limit or upgrade.
                         </AlertDescription>
                     </Alert>
                 )}
@@ -85,7 +106,11 @@ export default function Billing({ plan }: { plan: Plan }) {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <Usage label="Spaces" used={plan.spaces_used} max={plan.max_spaces} />
+                        <Usage
+                            label="Spaces"
+                            used={plan.spaces_used}
+                            max={plan.max_spaces}
+                        />
                         <Usage
                             label="Testimonials in your busiest space"
                             used={plan.busiest_space_testimonials}
@@ -98,7 +123,9 @@ export default function Billing({ plan }: { plan: Plan }) {
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="size-4 text-green-600" />
-                                Up to {plan.max_testimonials_per_space.toLocaleString()} testimonials per space
+                                Up to{' '}
+                                {plan.max_testimonials_per_space.toLocaleString()}{' '}
+                                testimonials per space
                             </li>
                         </ul>
                         <div className="flex gap-2">
@@ -111,8 +138,14 @@ export default function Billing({ plan }: { plan: Plan }) {
                                 </Button>
                             )}
                             {isPro && (
-                                <Button asChild variant="outline" disabled={!plan.billing_configured}>
-                                    <a href={portal.url()}>Manage subscription</a>
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    disabled={!plan.billing_configured}
+                                >
+                                    <a href={portal.url()}>
+                                        Manage subscription
+                                    </a>
                                 </Button>
                             )}
                         </div>

@@ -10,10 +10,12 @@
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Space-centric navigation driven by the current route.
 - Reuse the existing appearance hook for the toggle.
 
 **Non-Goals:**
+
 - No change to billing, collection pages, or embed behavior.
 - No redesign of the palette; existing tokens are already the standard palette.
 

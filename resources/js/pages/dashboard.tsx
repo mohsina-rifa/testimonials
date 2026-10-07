@@ -54,7 +54,11 @@ export default function Dashboard({
                         description="Share your collection page to start receiving testimonials."
                     >
                         <Button asChild>
-                            <a href={space.collection_url} target="_blank" rel="noreferrer">
+                            <a
+                                href={space.collection_url}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 Open collection page
                             </a>
                         </Button>
@@ -92,12 +96,18 @@ export default function Dashboard({
                                         router.get(
                                             dashboard(space.id),
                                             { period: value },
-                                            { preserveScroll: true, preserveState: true },
+                                            {
+                                                preserveScroll: true,
+                                                preserveState: true,
+                                            },
                                         )
                                     }
                                 >
                                     {periods.map((item) => (
-                                        <ToggleGroupItem key={item.value} value={item.value}>
+                                        <ToggleGroupItem
+                                            key={item.value}
+                                            value={item.value}
+                                        >
                                             {item.label}
                                         </ToggleGroupItem>
                                     ))}

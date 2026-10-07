@@ -14,7 +14,10 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import WallOfLove from '@/components/wall-of-love';
-import type { EmbedConfiguration, PublicTestimonial } from '@/components/wall-of-love';
+import type {
+    EmbedConfiguration,
+    PublicTestimonial,
+} from '@/components/wall-of-love';
 import { index as spacesIndex } from '@/routes/spaces';
 import { update } from '@/routes/spaces/embed';
 
@@ -58,44 +61,83 @@ export default function SpaceEmbed({
                             <Label>Layout</Label>
                             <Select
                                 value={form.data.layout}
-                                onValueChange={(value) => form.setData('layout', value as EmbedConfiguration['layout'])}
+                                onValueChange={(value) =>
+                                    form.setData(
+                                        'layout',
+                                        value as EmbedConfiguration['layout'],
+                                    )
+                                }
                             >
                                 <SelectTrigger className="w-full">
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="masonry">Masonry</SelectItem>
-                                    <SelectItem value="carousel">Carousel</SelectItem>
+                                    <SelectItem value="masonry">
+                                        Masonry
+                                    </SelectItem>
+                                    <SelectItem value="carousel">
+                                        Carousel
+                                    </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError message={form.errors.layout} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="background_color">Background color</Label>
+                            <Label htmlFor="background_color">
+                                Background color
+                            </Label>
                             <div className="flex gap-2">
                                 <input
                                     type="color"
                                     aria-label="Pick background color"
                                     className="h-9 w-12 rounded border"
-                                    value={/^#[0-9a-fA-F]{6}$/.test(form.data.background_color) ? form.data.background_color : '#ffffff'}
-                                    onChange={(e) => form.setData('background_color', e.target.value)}
+                                    value={
+                                        /^#[0-9a-fA-F]{6}$/.test(
+                                            form.data.background_color,
+                                        )
+                                            ? form.data.background_color
+                                            : '#ffffff'
+                                    }
+                                    onChange={(e) =>
+                                        form.setData(
+                                            'background_color',
+                                            e.target.value,
+                                        )
+                                    }
                                 />
                                 <Input
                                     id="background_color"
                                     value={form.data.background_color}
-                                    onChange={(e) => form.setData('background_color', e.target.value)}
+                                    onChange={(e) =>
+                                        form.setData(
+                                            'background_color',
+                                            e.target.value,
+                                        )
+                                    }
                                 />
                             </div>
-                            <InputError message={form.errors.background_color} />
+                            <InputError
+                                message={form.errors.background_color}
+                            />
                         </div>
                         {toggles.map((toggle) => (
-                            <div key={toggle.key} className="flex items-center gap-2">
+                            <div
+                                key={toggle.key}
+                                className="flex items-center gap-2"
+                            >
                                 <Checkbox
                                     id={toggle.key}
                                     checked={form.data[toggle.key]}
-                                    onCheckedChange={(checked) => form.setData(toggle.key, checked === true)}
+                                    onCheckedChange={(checked) =>
+                                        form.setData(
+                                            toggle.key,
+                                            checked === true,
+                                        )
+                                    }
                                 />
-                                <Label htmlFor={toggle.key}>{toggle.label}</Label>
+                                <Label htmlFor={toggle.key}>
+                                    {toggle.label}
+                                </Label>
                             </div>
                         ))}
                         <Button type="submit" disabled={form.processing}>
@@ -106,14 +148,19 @@ export default function SpaceEmbed({
                     <div className="min-w-0 space-y-2">
                         <h2 className="font-semibold">Preview</h2>
                         <div className="overflow-hidden rounded-xl border">
-                            <WallOfLove testimonials={testimonials} configuration={form.data} />
+                            <WallOfLove
+                                testimonials={testimonials}
+                                configuration={form.data}
+                            />
                         </div>
                     </div>
                 </div>
 
                 <div className="max-w-3xl space-y-2">
                     <h2 className="font-semibold">Embed code</h2>
-                    <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-xs">{snippet}</pre>
+                    <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-xs">
+                        {snippet}
+                    </pre>
                     <div className="flex items-center gap-3">
                         <Button
                             variant="outline"
@@ -125,7 +172,12 @@ export default function SpaceEmbed({
                         >
                             <Copy /> Copy code
                         </Button>
-                        <a className="text-sm text-primary underline" href={embed_url} target="_blank" rel="noreferrer">
+                        <a
+                            className="text-sm text-primary underline"
+                            href={embed_url}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             Open public wall
                         </a>
                     </div>

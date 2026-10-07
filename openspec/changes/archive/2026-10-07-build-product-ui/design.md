@@ -7,11 +7,13 @@ The domain layer exists: `Space`, `Testimonial`, `EmbedConfiguration` models; `C
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Every implemented capability reachable and usable via screens locally.
 - Reuse existing actions, layouts and ui components; keep business rules in the domain layer.
 - Standard palette through existing CSS theme tokens.
 
 **Non-Goals:**
+
 - New domain rules, webhook changes, emails, new dependencies, image processing.
 
 ## Decisions

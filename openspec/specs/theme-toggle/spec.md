@@ -1,6 +1,7 @@
 # theme-toggle Specification
 
 ## Purpose
+
 Lets signed-in users switch the interface between light and dark mode using the standard palette, with the choice remembered across visits.
 
 ## Requirements

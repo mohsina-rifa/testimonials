@@ -1,4 +1,4 @@
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage } from '@inertiajs/react';
 import {
     CreditCard,
     FolderKanban,
@@ -7,12 +7,12 @@ import {
     Settings,
     SlidersHorizontal,
     Code,
-} from "lucide-react";
-import AppLogo from "@/components/app-logo";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
-import { SpaceSwitcher } from "@/components/space-switcher";
-import { ThemeToggle } from "@/components/theme-toggle";
+} from 'lucide-react';
+import AppLogo from '@/components/app-logo';
+import { NavMain } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
+import { SpaceSwitcher } from '@/components/space-switcher';
+import { ThemeToggle } from '@/components/theme-toggle';
 import {
     Sidebar,
     SidebarContent,
@@ -21,22 +21,22 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { index as billing } from "@/routes/billing";
-import { edit as settings } from "@/routes/profile";
+} from '@/components/ui/sidebar';
+import { index as billing } from '@/routes/billing';
+import { edit as settings } from '@/routes/profile';
 import {
     dashboard as spaceDashboard,
     edit as editSpace,
     index as spaces,
-} from "@/routes/spaces";
-import { edit as editEmbed } from "@/routes/spaces/embed";
-import { index as inbox } from "@/routes/spaces/testimonials";
-import type { NavItem } from "@/types";
+} from '@/routes/spaces';
+import { edit as editEmbed } from '@/routes/spaces/embed';
+import { index as inbox } from '@/routes/spaces/testimonials';
+import type { NavItem } from '@/types';
 
 const globalNavItems: NavItem[] = [
-    { title: "Spaces", href: spaces(), icon: FolderKanban },
-    { title: "Billing", href: billing(), icon: CreditCard },
-    { title: "Settings", href: settings(), icon: Settings },
+    { title: 'Spaces', href: spaces(), icon: FolderKanban },
+    { title: 'Billing', href: billing(), icon: CreditCard },
+    { title: 'Settings', href: settings(), icon: Settings },
 ];
 
 export function AppSidebar() {
@@ -48,14 +48,14 @@ export function AppSidebar() {
             ? []
             : [
                   {
-                      title: "Dashboard",
+                      title: 'Dashboard',
                       href: spaceDashboard(spaceId),
                       icon: LayoutDashboard,
                   },
-                  { title: "Inbox", href: inbox(spaceId), icon: Inbox },
-                  { title: "Embed", href: editEmbed(spaceId), icon: Code },
+                  { title: 'Inbox', href: inbox(spaceId), icon: Inbox },
+                  { title: 'Embed', href: editEmbed(spaceId), icon: Code },
                   {
-                      title: "Space",
+                      title: 'Space',
                       href: editSpace(spaceId),
                       icon: SlidersHorizontal,
                   },

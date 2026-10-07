@@ -17,9 +17,11 @@ The app still looks like the Laravel starter kit: a global dashboard, starter-ki
 ## Capabilities
 
 ### New Capabilities
+
 - `theme-toggle`: user-selectable light/dark mode in the authenticated UI using the standard palette.
 
 ### Modified Capabilities
+
 - `app-navigation`: authenticated navigation, space sub-navigation, space switcher, post-auth landing at `/spaces`, branding.
 - `dashboard-analytics-ui`: dashboard becomes per-space and the central dashboard is removed.
 

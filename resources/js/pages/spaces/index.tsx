@@ -3,7 +3,13 @@ import { ExternalLink, FolderKanban } from 'lucide-react';
 import EmptyState from '@/components/empty-state';
 import UpgradePrompt from '@/components/upgrade-prompt';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { create, index } from '@/routes/spaces';
 import { dashboard, edit } from '@/routes/spaces';
 import { index as testimonials } from '@/routes/spaces/testimonials';
@@ -62,11 +68,16 @@ export default function SpacesIndex({
                             <Card key={space.id}>
                                 <CardHeader>
                                     <CardTitle>
-                                        <Link href={dashboard(space.id)} className="hover:underline">
+                                        <Link
+                                            href={dashboard(space.id)}
+                                            className="hover:underline"
+                                        >
                                             {space.title}
                                         </Link>
                                     </CardTitle>
-                                    <CardDescription>{space.subtitle}</CardDescription>
+                                    <CardDescription>
+                                        {space.subtitle}
+                                    </CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-3">
                                     <p className="text-sm text-muted-foreground">
@@ -74,16 +85,38 @@ export default function SpacesIndex({
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         <Button asChild size="sm">
-                                            <Link href={dashboard(space.id)}>Dashboard</Link>
+                                            <Link href={dashboard(space.id)}>
+                                                Dashboard
+                                            </Link>
                                         </Button>
-                                        <Button asChild size="sm" variant="outline">
-                                            <Link href={testimonials(space.id)}>Inbox</Link>
+                                        <Button
+                                            asChild
+                                            size="sm"
+                                            variant="outline"
+                                        >
+                                            <Link href={testimonials(space.id)}>
+                                                Inbox
+                                            </Link>
                                         </Button>
-                                        <Button asChild size="sm" variant="outline">
-                                            <Link href={edit(space.id)}>Space</Link>
+                                        <Button
+                                            asChild
+                                            size="sm"
+                                            variant="outline"
+                                        >
+                                            <Link href={edit(space.id)}>
+                                                Space
+                                            </Link>
                                         </Button>
-                                        <Button asChild size="sm" variant="ghost">
-                                            <a href={space.collection_url} target="_blank" rel="noreferrer">
+                                        <Button
+                                            asChild
+                                            size="sm"
+                                            variant="ghost"
+                                        >
+                                            <a
+                                                href={space.collection_url}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
                                                 <ExternalLink /> Public page
                                             </a>
                                         </Button>

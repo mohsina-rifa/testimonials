@@ -20,7 +20,10 @@ export type SpaceFormData = {
     slug: string;
     theme: string;
     rating_enabled: boolean;
-    field_configuration: Record<string, { enabled: boolean; required: boolean }>;
+    field_configuration: Record<
+        string,
+        { enabled: boolean; required: boolean }
+    >;
 };
 
 const optionalFields = [
@@ -45,7 +48,11 @@ export default function SpaceForm({
     const form = useForm<SpaceFormData>(initial);
     const errors = form.errors as Record<string, string | undefined>;
 
-    const setField = (key: string, part: 'enabled' | 'required', value: boolean) =>
+    const setField = (
+        key: string,
+        part: 'enabled' | 'required',
+        value: boolean,
+    ) =>
         form.setData('field_configuration', {
             ...form.data.field_configuration,
             [key]: {
@@ -65,28 +72,51 @@ export default function SpaceForm({
         >
             <div className="grid gap-2">
                 <Label htmlFor="title">Title</Label>
-                <Input id="title" value={form.data.title} onChange={(e) => form.setData('title', e.target.value)} />
+                <Input
+                    id="title"
+                    value={form.data.title}
+                    onChange={(e) => form.setData('title', e.target.value)}
+                />
                 <InputError message={form.errors.title} />
             </div>
             <div className="grid gap-2">
                 <Label htmlFor="subtitle">Subtitle</Label>
-                <Input id="subtitle" value={form.data.subtitle} onChange={(e) => form.setData('subtitle', e.target.value)} />
+                <Input
+                    id="subtitle"
+                    value={form.data.subtitle}
+                    onChange={(e) => form.setData('subtitle', e.target.value)}
+                />
                 <InputError message={form.errors.subtitle} />
             </div>
             <div className="grid gap-2">
                 <Label htmlFor="ask">Question for your customers</Label>
-                <Textarea id="ask" value={form.data.ask} onChange={(e) => form.setData('ask', e.target.value)} />
+                <Textarea
+                    id="ask"
+                    value={form.data.ask}
+                    onChange={(e) => form.setData('ask', e.target.value)}
+                />
                 <InputError message={form.errors.ask} />
             </div>
             <div className="grid gap-2">
                 <Label htmlFor="slug">Slug</Label>
-                <Input id="slug" value={form.data.slug} onChange={(e) => form.setData('slug', e.target.value.toLowerCase())} />
-                <p className="text-xs text-muted-foreground">Used in your public link: /s/{form.data.slug || 'your-slug'}</p>
+                <Input
+                    id="slug"
+                    value={form.data.slug}
+                    onChange={(e) =>
+                        form.setData('slug', e.target.value.toLowerCase())
+                    }
+                />
+                <p className="text-xs text-muted-foreground">
+                    Used in your public link: /s/{form.data.slug || 'your-slug'}
+                </p>
                 <InputError message={form.errors.slug} />
             </div>
             <div className="grid gap-2">
                 <Label>Theme</Label>
-                <Select value={form.data.theme} onValueChange={(value) => form.setData('theme', value)}>
+                <Select
+                    value={form.data.theme}
+                    onValueChange={(value) => form.setData('theme', value)}
+                >
                     <SelectTrigger className="w-48">
                         <SelectValue />
                     </SelectTrigger>
@@ -100,37 +130,65 @@ export default function SpaceForm({
             </div>
 
             <fieldset className="grid gap-3 rounded-lg border p-4">
-                <legend className="px-1 text-sm font-medium">Form fields</legend>
-                <p className="text-xs text-muted-foreground">Name, email, testimonial and consent are always collected.</p>
+                <legend className="px-1 text-sm font-medium">
+                    Form fields
+                </legend>
+                <p className="text-xs text-muted-foreground">
+                    Name, email, testimonial and consent are always collected.
+                </p>
                 <div className="flex items-center gap-2">
                     <Checkbox
                         id="rating_enabled"
                         checked={form.data.rating_enabled}
-                        onCheckedChange={(checked) => form.setData('rating_enabled', checked === true)}
+                        onCheckedChange={(checked) =>
+                            form.setData('rating_enabled', checked === true)
+                        }
                     />
-                    <Label htmlFor="rating_enabled">Ask for a star rating</Label>
+                    <Label htmlFor="rating_enabled">
+                        Ask for a star rating
+                    </Label>
                 </div>
                 {optionalFields.map((field) => {
                     const config = form.data.field_configuration[field.key];
 
                     return (
-                        <div key={field.key} className="flex flex-wrap items-center gap-4">
+                        <div
+                            key={field.key}
+                            className="flex flex-wrap items-center gap-4"
+                        >
                             <div className="flex items-center gap-2">
                                 <Checkbox
                                     id={`${field.key}-enabled`}
                                     checked={config.enabled}
-                                    onCheckedChange={(checked) => setField(field.key, 'enabled', checked === true)}
+                                    onCheckedChange={(checked) =>
+                                        setField(
+                                            field.key,
+                                            'enabled',
+                                            checked === true,
+                                        )
+                                    }
                                 />
-                                <Label htmlFor={`${field.key}-enabled`}>{field.label}</Label>
+                                <Label htmlFor={`${field.key}-enabled`}>
+                                    {field.label}
+                                </Label>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Checkbox
                                     id={`${field.key}-required`}
                                     checked={config.required}
                                     disabled={!config.enabled}
-                                    onCheckedChange={(checked) => setField(field.key, 'required', checked === true)}
+                                    onCheckedChange={(checked) =>
+                                        setField(
+                                            field.key,
+                                            'required',
+                                            checked === true,
+                                        )
+                                    }
                                 />
-                                <Label htmlFor={`${field.key}-required`} className="text-muted-foreground">
+                                <Label
+                                    htmlFor={`${field.key}-required`}
+                                    className="text-muted-foreground"
+                                >
                                     Required
                                 </Label>
                             </div>
